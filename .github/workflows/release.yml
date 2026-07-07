@@ -10,20 +10,23 @@ jobs:
   release:
     name: Build and push gem to RubyGems
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       id-token: write
+
     environment: release
+
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.4'
           bundler-cache: true
-      - name: Build gem
-        run: gem build *.gemspec
-      - name: Push gem to RubyGems
-        run: gem push *.gem
-        env:
-          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_KEY }}
+
+      - name: Publish gem to RubyGems
+        uses: rubygems/release-gem@v1
