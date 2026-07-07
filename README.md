@@ -1,5 +1,7 @@
 # NTI Event Bus
 
+[![CI](https://github.com/nueca-tech/nti_event_bus/actions/workflows/ci.yml/badge.svg)](https://github.com/nueca-tech/nti_event_bus/actions/workflows/ci.yml)
+
 A small, production-grade **publish/subscribe event bus** for Ruby & Rails.
 
 Declare `domain.action` subscriptions in a compact DSL, `publish` events, and fan them out to handler classes **asynchronously** via ActiveJob. The subscription registry is built once at boot and **deep-frozen**, so publishing is a lock-free hash lookup with no per-call allocation and no long-lived, unbounded state — no thread pools, no notification subscribers, nothing to leak.
