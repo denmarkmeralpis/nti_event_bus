@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
                      'for lock-free reads, so publishing adds no locking and no unbounded state.'
   spec.homepage = 'https://github.com/nueca-tech/nti_event_bus'
   spec.license = 'MIT'
-  spec.required_ruby_version = '>= 3.2.0'
+  spec.required_ruby_version = '>= 3.4.0'
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
   spec.metadata['homepage_uri'] = spec.homepage
