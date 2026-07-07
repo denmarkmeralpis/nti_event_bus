@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   release:
@@ -19,7 +20,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '4.0'
+          ruby-version: '3.4'
           bundler-cache: true
       - name: Build and publish gem
         uses: rubygems/release-gem@v1
