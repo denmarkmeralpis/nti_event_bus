@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Build and push gem to RubyGems
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Required for trusted publishing (OIDC) to RubyGems.
+      id-token: write
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0'
+          bundler-cache: true
+      - name: Build and publish gem
+        uses: rubygems/release-gem@v1
