@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      # Required for trusted publishing (OIDC) to RubyGems.
-      id-token: write
     environment: release
     steps:
       - uses: actions/checkout@v5
@@ -22,5 +20,9 @@ jobs:
         with:
           ruby-version: '3.4'
           bundler-cache: true
-      - name: Build and publish gem
-        uses: rubygems/release-gem@v1
+      - name: Build gem
+        run: gem build *.gemspec
+      - name: Push gem to RubyGems
+        run: gem push *.gem
+        env:
+          GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_KEY }}
